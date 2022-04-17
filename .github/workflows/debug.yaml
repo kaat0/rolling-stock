@@ -1,0 +1,45 @@
+### github action to publish a debug
+##
+name: "debug"
+
+## Controls when the workflow will run
+on:
+  # push:
+  #   branches: [ github-action ]
+
+  ## Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+## A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: "checkout this repo"
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v3
+
+      - name: Checkout schema repo
+        uses: actions/checkout@v3
+        with:
+          ref: '2022.04'
+          repository: railtoolkit/schema
+          path: 'schema'
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-actor: true
+
+      # - name: "install Ajv JSON schema validator"
+      #   run: npm install -g ajv-cli && npm install -g ajv-formats
+
+      # - name: "testing provided examples"
+      #   run: |
+      #     ajv validate --spec=draft2020 -c ajv-formats \
+      #       -s ../../schema/src/rolling-stock.json \
+      #       -d "rolling-stock-data/*/*.yaml"

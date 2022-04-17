@@ -1,0 +1,17 @@
+%YAML 1.2
+---
+vehicle:
+  name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+  id: Facs124
+  UUID: 30abe88d-5be7-4c9c-b6a2-61c6b0e9f9bc
+  picture: https://dybas.de/dybas/gw/gw_f_1/image/124_0042.jpg
+  vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
+
+  length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+  mass: 25.00      # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+  load_limit: 59.0 # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+  speed_limit: 100 # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+
+  rotation_mass: 1.03   # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 13 for "Güterwagenzug beladen" -> 1.03 to 1.04)
+  base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
+  air_resistance: 3.9   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore" modified for the used formula

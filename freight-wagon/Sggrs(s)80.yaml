@@ -1,0 +1,17 @@
+%YAML 1.2
+---
+vehicle:
+  name: "Sggrs(s) 80 I71"  # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
+  id: Sggrs(s)_80_I71
+  UUID: 2d06d268-2a8a-467c-850e-2785617503d5
+  picture: https://dybas.de/dybas/gw/gw_s_7/image/716_4850_240.jpg
+  vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
+
+  length: 26.70     # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
+  mass: 28.00       # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
+  load_limit: 107.0 # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
+  speed_limit: 120  # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
+
+  rotation_mass: 1.06   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+  base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
+  air_resistance: 0.032 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"

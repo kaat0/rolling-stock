@@ -7,4 +7,8 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 # Pull Request Process
 
-TODO DESCRIPTION
+1. See if the vehicle is already available under a different name.
+2. Check \<VEHICLE-NAME\>.yaml against [railtoolkit rolling stock schema](https://github.com/railtoolkit/schema).
+3. Create a Pull Request with:
+    - \<CATEGORY\>/\<VEHICLE-NAME\>.yaml
+    - your Name added in CITATION.cff

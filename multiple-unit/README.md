@@ -2,6 +2,8 @@
 
 ------------
 
-## Overview
+The naming is according to the manufacturer's designation.
 
-TODO
+| Vehicle                 | Description |
+| ----------------------- | ----------- |
+| siemens_desiro_classic  | Two-car diesel multiple unit for local passenger services. |

@@ -1,0 +1,18 @@
+%YAML 1.2
+---
+vehicle:
+  name: "DApza 687.2 and DBpza 682.2"  # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
+  id: DABpza68
+  UUID: 45e83b27-7952-4f34-ad8d-1affcacfe6f2
+  picture: https://commons.wikimedia.org/wiki/File:D-DB_50_80_26-81_456-8_DBpza_682.2_Bremen_Hbf_14.11.2015.jpg
+  vehicle_type: passenger # "freight", "passenger", "traction unit" or "multiple unit"
+
+  length: 26.8     # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
+  mass: 50.00      # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
+  load_limit: 20.0 # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
+  speed_limit: 160 # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
+
+  rotation_mass: 1.06       # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for freight wagons
+  base_resistance:  2.0     # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
+  rolling_resistance: 0.715 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
+  air_resistance: 3.64      # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"

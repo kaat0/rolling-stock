@@ -2,22 +2,30 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Calendar Versioning](https://calver.org) with YYYY.0M.
 
 Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ## [Unreleased]
 
 ### Added
+  
+  * new VEHICLE
 
-  Message
 
-## Version [0.1.0] - ISO-DATE
+## Version [2022.04]
 
 ### Added
 
-  Message
+  * added freight-wagon/Facnps
+  * added freight-wagon/Facs124
+  * added freight-wagon/Sggrs(s)80
+  * added multiple-unit/siemens_desiro_classic
+  * added passenger-carriage/DABpza
+  * added passenger-carriage/DBpbzfa
+  * added traction-unit/Bombardier_Traxx_2_P160
+  * added traction-unit/DB_V90
 
 
-[Unreleased]: https://github.com/railtoolkit/rolling-stock/compare/v0.1.0...master
-[0.1.0]: https://github.com/railtoolkit/rolling-stock/releases/tag/v0.1.0
+[Unreleased]: https://github.com/railtoolkit/rolling-stock-data/compare/2022.04...master
+[2022.04]: https://github.com/railtoolkit/rolling-stock-data/releases/tag/2022.04

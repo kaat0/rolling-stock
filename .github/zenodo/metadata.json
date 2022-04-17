@@ -1,0 +1,25 @@
+{
+  "title": "rolling-stock-data",
+  "version": "%%[SCRIPT]",
+  "publication_date": "%%[SCRIPT]",
+  "creators": [ 
+    {"%%[SCRIPT]"}
+  ], 
+  "description": "",
+  "keywords": [
+    "railway",
+    "rolling stock",
+    "data"
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  },
+  "language": "eng",
+  "access_right": "open", 
+  "upload_type": "dataset",
+  "communities": [
+    {
+      "identifier": "railtoolkit"
+    }
+  ]
+}
