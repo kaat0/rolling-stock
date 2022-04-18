@@ -19,38 +19,56 @@ Categories are derived from [TSI LOC&PAS](https://eur-lex.europa.eu/legal-conten
 
 The vehicle YAML-files follow the [railtoolkit rolling stock schema (2022.04)](https://github.com/railtoolkit/schema).
 
-# Usage
-
-TODO
-
-# Contributing
-
-1. See if the vehicle is already available under a different name.
-2. Check \<VEHICLE-NAME\>.yaml against [railtoolkit rolling stock schema](https://github.com/railtoolkit/schema).
-3. Create a Pull Request with:
-    - \<CATEGORY\>/\<VEHICLE-NAME\>.yaml
-    - your Name added in CITATION.cff
+------------
 
 # Data Collection Guide
 
 ## Resistance
 
-![x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}](https://latex.codecogs.com/svg.latex?x=\frac{-b\pm\sqrt{b^2-4ac}}{2a})
-(in ‰)
-traction units:
-    F_Rt = f_Rtd0 * m_td * g + f_Rtc0 * m_tc * g + F_Rt2 * ((v+Δv_t)/v00)^2
-the consist (set of wagons):
-    F_Rw = m_w * g * (f_Rw0 + f_Rw1 * v/v00 + f_Rw2 * ((v+Δv_w)/v00)^2)
+The vehicle resistance force ![F_R](https://latex.codecogs.com/svg.latex?F_R) is calculated in Newton. But for better compatibility with other resistances, the force is set in relation to the mass ![m](https://latex.codecogs.com/svg.latex?m) of the vehicle and the force of gravity ![g](https://latex.codecogs.com/svg.latex?g):
+
+![f_R = \frac{F_R}{m \cdot g}](https://latex.codecogs.com/svg.latex?f_R%20=%20\frac{F_R}{m%20\cdot%20g})   (in ‰)
+
+The calculation of the resistance follows the general formula:
+![f_R=\alpha+\beta\cdot v+\gamma\cdot v^2](https://latex.codecogs.com/svg.latex?f_R%20=%20\alpha%20+%20\beta%20\cdot%20v%20+%20\gamma%20\cdot%20v^2)  (in ‰)
+
+|    variable                                            | vehicle attribute    |
+| ------------------------------------------------------ | -------------------- |
+| ![\alpha](https://latex.codecogs.com/svg.latex?\alpha) | `base_resistance`    |
+| ![\beta](https://latex.codecogs.com/svg.latex?\beta)   | `rolling_resistance` |
+| ![\gamma](https://latex.codecogs.com/svg.latex?\gamma) | `air_resistance`     |
+
+For vehicles with propulsion, the attribute `rolling_resistance` is used only for the non-driven axles.
+
+Sources with tables for ![\alpha](https://latex.codecogs.com/svg.latex?\alpha), ![\beta](https://latex.codecogs.com/svg.latex?\beta), and ![\gamma](https://latex.codecogs.com/svg.latex?\gamma) are for example:
+  * Wende, Dietrich. [Fahrdynamik des Schienenverkehrs](https://doi.org/10.1007/978-3-322-82961-0). Germany: Vieweg+Teubner Verlag, 2013.
+  * Brünger, Olaf and Dahlhaus, Elias. Running Time Estimation, Chaper 4, Pages 65 - 90. In: Railway Timetabling & Operations. Germany: Eurailpress, 2008.
+
 
 ## Tractive Effort
 
+The tractive force of a traction unit is characterised by two limit forces:
+* the maximum force that can be transmitted between wheel and rail ![F_{TF}(v) = m \cdot g \cdot \mu(v)](https://latex.codecogs.com/svg.latex?F_{TF}(v)%20=%20m%20\cdot%20g%20\cdot%20\mu(v)), and 
+* the maximum tractive force of the traction unit due to power ![F_{TP}(v) = \frac{P}{v}](https://latex.codecogs.com/svg.latex?F_{TP}(v)%20=%20\frac{P}{v}).
+
+Both limit forces shape the characteristics of the traction unit. The pairs for `tractive_effort` can be approximated from both conditions. At the very least, three `tractive_effort` pairs are needed:
+  * The maximum transmittable force at standstill is limited by the coefficient of friction and the mass on the drive axles.
+  * The speed at the transition from the frictional traction force to the power traction force.
+  * The maximum force during the maximum speed.
+
+As public sources rarely know the actual forces achieved the above values are only an approximation. What can be found publicly, however, is the mass on the driven axles and the installed power.
+
+------------
+
 # Roadmap
 
-* provide a YAML file generator for rolling stock data.
+  * provide a YAML file generator for rolling stock data.
 
 ------------
 
 # License
+
+Creative Commons Attribution 4.0 International Public License
 
 This is a human-readable summary of (and not a substitute for) the license.
 

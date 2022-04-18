@@ -11,4 +11,4 @@ Please note we have a code of conduct, please follow it in all your interactions
 2. Check \<VEHICLE-NAME\>.yaml against [railtoolkit rolling stock schema](https://github.com/railtoolkit/schema).
 3. Create a Pull Request with:
     - \<CATEGORY\>/\<VEHICLE-NAME\>.yaml
-    - your Name added in CITATION.cff
+    - your Name added in .github/zenodo/metadata.json

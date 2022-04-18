@@ -32,20 +32,28 @@ jobs:
       # 3. create release notes
       - name: "create release notes"
         run: |
-          TOP=$(grep -n "Version \[${{ steps.tag.outputs.tag }}\]" CHANGELOG.md | cut -d: -f1)
+          VERSION=${{ steps.tag.outputs.tag }}
+          STATUS=0
+          grep -qs "Version \[$VERSION\]" CHANGELOG.md || STATUS=1
+          if [ $STATUS = 1 ]; then
+            echo "Version $VERSION is not present in CHANGELOG.md."
+            exit 1
+          fi
+          TOP=$(grep -n "Version \[$VERSION\]" CHANGELOG.md | cut -d: -f1)
           awk "NR>$TOP" CHANGELOG.md > release-note.tmp.md
           BOTTOM=$(grep -n -m 1 "## Version\|[Unreleased]:" release-note.tmp.md | cut -d: -f1)
           BOTTOM=$(( $TOP + $BOTTOM ))
           BOTTOM=$(( $BOTTOM - 2 ))
           TOP=$(( $TOP + 1 ))
-          awk "NR>$TOP&&NR<$BOTTOM" CHANGELOG.md > release-note-${{ steps.tag.outputs.tag }}.md
-          sed -i -- "s/###/##/g" release-note-${{ steps.tag.outputs.tag }}.md
+          awk "NR>$TOP&&NR<$BOTTOM" CHANGELOG.md > release-note-$VERSION.md
+          sed -i -- "s/###/##/g" release-note-$VERSION.md
           rm release-note.tmp.md
 
       # 4. Update metadata.json
       - name: "Update metadata.json"
         run: |
-          sed -i".backup" -e"s/\"version\": \"%%\[SCRIPT\]\"/\"version\": \"${{ steps.tag.outputs.tag }}\"/g" .github/zenodo/metadata.json
+          VERSION=${{ steps.tag.outputs.tag }}
+          sed -i".backup" -e"s/\"version\": \"%%\[SCRIPT\]\"/\"version\": \"$VERSION\"/g" .github/zenodo/metadata.json
 
       # 5. create release archive
       - uses: papeloto/action-zip@v1
@@ -145,17 +153,19 @@ jobs:
       
       # 2. update CITATION.cff
       - run: |
-        DATE=$(date "+%Y-%m-%d")
-        echo "find lines in CITATION.cff"
-        VERSION_LINE=$(grep -n 'version: v' CITATION.cff | cut -d: -f1)
-        DATE_LINE=$(grep -n 'date-released:' CITATION.cff | cut -d: -f1)
-        echo "select the second DOI"
-        DOI_LINE=$(grep -n 'type: doi' CITATION.cff | cut -d: -f1 | awk "NR==2")
-        DOI_LINE=$(( $DOI_LINE + 1 ))
-        echo "update CITATION.cff"
-        sed -i -- "${VERSION_LINE}s|.*|version: ${{needs.create_package.outputs.version}}|" CITATION.cff
-        sed -i -- "${DATE_LINE}s|.*|date-released: ${DATE}|" CITATION.cff
-        sed -i -- "${DOI_LINE}s|.*|    value: ${{needs.publish_zenodo.outputs.doi}}|" CITATION.cff
+          DATE=$(date "+%Y-%m-%d")
+          VERSION=${{needs.create_package.outputs.version}}
+          DOI=${{needs.publish_zenodo.outputs.doi}}
+          echo "find lines in CITATION.cff"
+          VERSION_LINE=$(grep -n 'version: [0-9][0-9][0-9][0-9].[0-1][0-9]' CITATION.cff | cut -d: -f1)
+          DATE_LINE=$(grep -n 'date-released:' CITATION.cff | cut -d: -f1)
+          echo "select the second DOI"
+          DOI_LINE=$(grep -n 'type: doi' CITATION.cff | cut -d: -f1 | awk "NR==2")
+          DOI_LINE=$(( $DOI_LINE + 1 ))
+          echo "update CITATION.cff"
+          sed -i -- "${VERSION_LINE}s|.*|version: $VERSION|" CITATION.cff
+          sed -i -- "${DATE_LINE}s|.*|date-released: ${DATE}|" CITATION.cff
+          sed -i -- "${DOI_LINE}s|.*|    value: $DOI|" CITATION.cff
       
       # 3. push the change back to master
       - name: push

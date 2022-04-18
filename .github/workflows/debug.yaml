@@ -33,6 +33,7 @@ jobs:
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
         with:
+          key: ${{ runner.os }}-${{ hashFiles('.github/workflows/debug.yaml') }}
           limit-access-to-actor: true
 
       # - name: "install Ajv JSON schema validator"
