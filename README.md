@@ -1,6 +1,6 @@
 # Rolling Stock Data
 
-[![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)](https://creativecommons.org/licenses/by/4.0/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6467448.svg)](https://doi.org/10.5281/zenodo.6467448) [![continuous integration test](https://github.com/railtoolkit/rolling-stock-data/actions/workflows/testing.yaml/badge.svg?branch=main)](https://github.com/railtoolkit/rolling-stock-data/actions/workflows/testing.yaml)
 
 ------------
 

@@ -24,7 +24,7 @@ identifiers:
     value: 10.5281/zenodo.6467448
     description: 'Collection of archived snapshots of all versions of the library'
   - type: doi
-    value: 10.5281/zenodo.6467449
+    value: 10.5281/zenodo.6468325
     description: Current version
 repository-code: 'https://github.com/railtoolkit/rolling-stock-data'
 abstract: >-
