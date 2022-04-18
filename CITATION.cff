@@ -13,10 +13,19 @@ authors:
     email: m.scheidt@tu-braunschweig.de
     affiliation: TU Braunschweig
     orcid: 'https://orcid.org/0000-0002-9384-8945'
-  - given-names: Max
-    family-names: Kannenberg
-    email: 95709892+MaxKannenberg@users.noreply.github.com
-    affiliation: TU Braunschweig
+# contributors: # might come with cff-version: 1.3.0
+#   - given-names: Max
+#     family-names: Kannenberg
+#     email: 95709892+MaxKannenberg@users.noreply.github.com
+#     affiliation: TU Braunschweig
+#     role: DataCollector
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.6467448
+    description: 'Collection of archived snapshots of all versions of the library'
+  - type: doi
+    value: 10.5281/zenodo.6467449
+    description: Current version
 repository-code: 'https://github.com/railtoolkit/rolling-stock-data'
 abstract: >-
   A collection of vehicle data for running time estimation in YAML format.
@@ -25,3 +34,5 @@ keywords:
   - rolling stock
   - data
 license: CC-BY-4.0
+version: 2022.04
+date-released: 2022-04-18

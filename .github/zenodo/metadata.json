@@ -1,11 +1,21 @@
 {
   "title": "rolling-stock-data",
   "version": "%%[SCRIPT]",
-  "publication_date": "%%[SCRIPT]",
   "creators": [ 
-    {"%%[SCRIPT]"}
+    {
+      "orcid": "0000-0002-9384-8945", 
+      "affiliation": "TU Braunschweig", 
+      "name": "Scheidt, Martin"
+    }
   ], 
-  "description": "",
+  "contributors": [ 
+    {
+      "affiliation": "TU Braunschweig", 
+      "name": "Kannenberg, Max",
+      "type": "DataCollector"
+    }
+  ], 
+  "description": "A collection of vehicle data for running time estimation in YAML format.",
   "keywords": [
     "railway",
     "rolling stock",

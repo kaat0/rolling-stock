@@ -42,18 +42,27 @@ jobs:
           sed -i -- "s/###/##/g" release-note-${{ steps.tag.outputs.tag }}.md
           rm release-note.tmp.md
 
-      # 3. create release archive
+      # 4. Update metadata.json
+      - name: "Update metadata.json"
+        run: |
+          sed -i".backup" -e"s/\"version\": \"%%\[SCRIPT\]\"/\"version\": \"${{ steps.tag.outputs.tag }}\"/g" .github/zenodo/metadata.json
+
+      # 5. create release archive
       - uses: papeloto/action-zip@v1
         with:
-          files: freight-wagon/ multiple-unit/ passenger-carriage/ traction-unit/ README.md
+          files: freight-wagon/ multiple-unit/ passenger-carriage/ traction-unit/ README.md LICENSE
           dest: rolling-stock-data-${{ steps.tag.outputs.tag }}.zip
 
-      # 5. upload artifact to share it with other jobs
+      # 6. upload artifact to share it with other jobs
       - uses: actions/upload-artifact@v3
         with:
           path: |
             release-note-${{ steps.tag.outputs.tag }}.md
             rolling-stock-data-${{ steps.tag.outputs.tag }}.zip
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+      - uses: actions/upload-artifact@v3
+        with:
+          path: .github/zenodo/metadata.json
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
 
   publish_github:
@@ -96,14 +105,75 @@ jobs:
         with:
           id: ${{ steps.create_release.outputs.id }}
 
-  publish_twitter:
+  publish_zenodo:
     needs: create_package
+    name: "publish on zenodo"
+    outputs:
+      doi: ${{ steps.zenodraft.outputs.doi }}
+    runs-on: ubuntu-latest
+    steps:
+      # 1. download artifact in folder artifact/ and move it one level up
+      - uses: actions/download-artifact@v3
+      - run: |
+          mv ./artifact/rolling-stock-data-${{needs.create_package.outputs.version}}.zip ./
+
+      # 2. install zenodraft
+      - name: "install zenodraft"
+        run: npm install -g zenodraft
+
+      # 3. upload new release to zenodo
+      - name: "uploading to zenodo"
+        id: zenodraft
+        env:
+          ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
+          COLLECTION: 6467448
+        run: |
+          ID=$(zenodraft deposition create in-existing-collection $COLLECTION)
+          zenodraft file add $ID rolling-stock-data-*.zip
+          zenodraft metadata update $ID artifact/metadata.json
+          zenodraft deposition publish $ID
+          echo "::set-output name=doi::$(zenodraft deposition show prereserved $ID)"
+
+  update_citation:
+    needs: [create_package, publish_zenodo]
+    name: "updating CITATION.cff"
+    runs-on: ubuntu-latest
+    steps:
+      # 1. checkout the repo
+      - name: "checkout"
+        uses: actions/checkout@v3
+      
+      # 2. update CITATION.cff
+      - run: |
+        DATE=$(date "+%Y-%m-%d")
+        echo "find lines in CITATION.cff"
+        VERSION_LINE=$(grep -n 'version: v' CITATION.cff | cut -d: -f1)
+        DATE_LINE=$(grep -n 'date-released:' CITATION.cff | cut -d: -f1)
+        echo "select the second DOI"
+        DOI_LINE=$(grep -n 'type: doi' CITATION.cff | cut -d: -f1 | awk "NR==2")
+        DOI_LINE=$(( $DOI_LINE + 1 ))
+        echo "update CITATION.cff"
+        sed -i -- "${VERSION_LINE}s|.*|version: ${{needs.create_package.outputs.version}}|" CITATION.cff
+        sed -i -- "${DATE_LINE}s|.*|date-released: ${DATE}|" CITATION.cff
+        sed -i -- "${DOI_LINE}s|.*|    value: ${{needs.publish_zenodo.outputs.doi}}|" CITATION.cff
+      
+      # 3. push the change back to master
+      - name: push
+        run: |
+          git config user.name railtoolkit
+          git config user.email railtoolkit@ownx.net
+          git add CITATION.cff
+          git commit -m "DOI for ${{needs.create_package.outputs.version}} updated to ${{needs.publish_zenodo.outputs.doi}}"
+          git push
+
+  publish_twitter:
+    needs: [create_package, publish_zenodo]
     name: "publish on github"
     runs-on: ubuntu-latest
     steps:
     - uses: devigned/go-twitter-action@v1
       with:
-        message: "We just release the new version ${{needs.create_package.outputs.version}} of Rolling Stock Data!"
+        message: "We just release the new version ${{needs.create_package.outputs.version}} of Rolling Stock Data! You can find the new version here: https://doi.org/${{needs.publish_zenodo.outputs.doi}}"
         apiKey: ${{ secrets.TWITTER_API_KEY }}
         apiKeySecret: ${{ secrets.TWITTER_API_SECRET }}
         accessToken: ${{ secrets.TWITTER_ACCESS_TOKEN }}

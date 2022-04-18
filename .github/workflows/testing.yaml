@@ -25,8 +25,6 @@ jobs:
       - name: "checkout this repo"
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v3
-        with:
-          path: 'rolling-stock-data'
 
       - name: Checkout schema repo
         uses: actions/checkout@v3
@@ -38,8 +36,26 @@ jobs:
       - name: "install Ajv JSON schema validator"
         run: npm install -g ajv-cli && npm install -g ajv-formats
 
-      - name: "testing provided examples"
+      - name: "testing freight-wagon files"
         run: |
           ajv validate --spec=draft2020 -c ajv-formats \
             -s schema/src/rolling-stock.json \
-            -d "rolling-stock-data/*/*.yaml"
+            -d "freight-wagon/*.yaml"
+
+      - name: "testing multiple-unit files"
+        run: |
+          ajv validate --spec=draft2020 -c ajv-formats \
+            -s schema/src/rolling-stock.json \
+            -d "multiple-unit/*.yaml"
+
+      - name: "testing passenger-carriage files"
+        run: |
+          ajv validate --spec=draft2020 -c ajv-formats \
+            -s schema/src/rolling-stock.json \
+            -d "passenger-carriage/*.yaml"
+
+      - name: "testing traction-unit files"
+        run: |
+          ajv validate --spec=draft2020 -c ajv-formats \
+            -s schema/src/rolling-stock.json \
+            -d "traction-unit/*.yaml"
