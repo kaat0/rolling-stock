@@ -12,7 +12,7 @@ on:
 ## A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   create_package:
-    name: "create a snapshot package"
+    name: "create a new package"
     outputs:
       version: ${{ steps.tag.outputs.tag }}
     runs-on: ubuntu-latest
@@ -58,7 +58,8 @@ jobs:
       # 5. create release archive
       - uses: papeloto/action-zip@v1
         with:
-          files: freight-wagon/ multiple-unit/ passenger-carriage/ traction-unit/ README.md LICENSE
+          files: freight-wagon multiple-unit passenger-carriage traction-unit README.md LICENSE
+          recursive: false
           dest: rolling-stock-data-${{ steps.tag.outputs.tag }}.zip
 
       # 6. upload artifact to share it with other jobs
@@ -174,11 +175,11 @@ jobs:
           git config user.email railtoolkit@ownx.net
           git add CITATION.cff
           git commit -m "DOI for ${{needs.create_package.outputs.version}} updated to ${{needs.publish_zenodo.outputs.doi}}"
-          git push
+          git push origin HEAD:main
 
   publish_twitter:
     needs: [create_package, publish_zenodo]
-    name: "publish on github"
+    name: "tweet about it"
     runs-on: ubuntu-latest
     steps:
     - uses: devigned/go-twitter-action@v1
