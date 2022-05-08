@@ -1,17 +1,19 @@
 %YAML 1.2
 ---
-vehicle:
-  name: "Facnps H40"  # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
-  id: Facnps_H40
-  UUID: 7a3607ee-f961-407a-84db-eb4c5485a477
-  picture: https://dybas.de/dybas/gw/gw_f_1/image/141_6648_180_a.jpg
-  vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2022.05"
+vehicles:
+  - name: "Facnps H40"  # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
+    id: Facnps_H40
+    UUID: 7a3607ee-f961-407a-84db-eb4c5485a477
+    picture: https://dybas.de/dybas/gw/gw_f_1/image/141_6648_180_a.jpg
+    vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
 
-  length: 12.50     # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
-  mass: 21.50       # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
-  load_limit: 158.5 # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
-  speed_limit: 100  # 
+    length: 12.50     # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
+    mass: 21.50       # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
+    load_limit: 158.5 # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
+    speed_limit: 100  # 
 
-  rotation_mass: 1.06   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
-  base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
-  air_resistance: 0.032 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    rotation_mass: 1.06   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
+    air_resistance: 0.032 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"

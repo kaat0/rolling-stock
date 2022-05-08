@@ -17,7 +17,7 @@ This repo is a collection of rail vehicle data. This is a place to collect this 
 
 Categories are derived from [TSI LOC&PAS](https://eur-lex.europa.eu/legal-content/en/TXT/PDF/?uri=OJ:JOL_2014_356_R_0004&from=EN) and [TSI WAG](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32013R0321&qid=1649681414325&from=EN).
 
-The vehicle YAML-files follow the [railtoolkit rolling stock schema (2022.04)](https://github.com/railtoolkit/schema).
+The vehicle YAML-files follow the [railtoolkit rolling stock schema (2022.05)](https://github.com/railtoolkit/schema).
 
 ------------
 
