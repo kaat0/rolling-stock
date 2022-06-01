@@ -14,6 +14,7 @@ vehicles:
     load_limit: 20.0 # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
     speed_limit: 160 # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
 
+    # coefficients for the vehicles resistance
     rotation_mass: 1.06       # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for freight wagons
     base_resistance:  2.0     # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
     rolling_resistance: 0.715 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"

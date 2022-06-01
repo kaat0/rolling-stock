@@ -14,6 +14,7 @@ vehicles:
     load_limit: 158.5 # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Hopper-Wagen-Facnps-H40.053D.pdf
     speed_limit: 100  # 
 
-    rotation_mass: 1.06   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
-    base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
-    air_resistance: 0.032 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    # coefficients for the vehicles resistance
+    rotation_mass: 1.06  # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    base_resistance: 1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
+    air_resistance: 3.2  # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"

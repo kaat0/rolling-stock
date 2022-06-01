@@ -21,7 +21,7 @@ vehicles:
     rotation_mass: 1.08     # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 13 for "Zug, überschlägliche Berechnung"
     base_resistance: 3.0    # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "f_WL0" -> 2.5 ‰ to 3.5 ‰
     rolling_resistance: 1.4 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "f_WW0" -> 1.2 ‰ to 1.6 ‰
-    air_resistance: 0.0039  # source: the closest parameters are used: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "Fzg. vierachsig, abgerundeter Kopf" plus "Sektion bei Mehrteiligkeit"  -> 2200 N + 400 N
+    air_resistance: 3.9     # source: the closest parameters are used: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "Fzg. vierachsig, abgerundeter Kopf" plus "Sektion bei Mehrteiligkeit"  -> 2200 N + 400 N
 
     # tractive effort as pairs of speed and tractive effort
     tractive_effort:

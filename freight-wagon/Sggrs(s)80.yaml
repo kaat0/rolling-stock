@@ -14,6 +14,7 @@ vehicles:
     load_limit: 107.0 # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
     speed_limit: 120  # source: https://www.vtg.de/fileadmin/vtg/dokumente/waggon-datenblaetter/Containerwagen-Sggrs_s_80-I71.080D.pdf
 
-    rotation_mass: 1.06   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
-    base_resistance:  1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
-    air_resistance: 0.032 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    # coefficients for the vehicles resistance
+    rotation_mass: 1.06  # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
+    base_resistance: 1.4 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "roller bearings")
+    air_resistance: 3.22 # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for "full train loads of coal or ore"
