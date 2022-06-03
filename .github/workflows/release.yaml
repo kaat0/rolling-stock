@@ -170,12 +170,13 @@ jobs:
       
       # 3. push the change back to master
       - name: push
-        run: |
-          git config user.name railtoolkit
-          git config user.email railtoolkit@ownx.net
-          git add CITATION.cff
-          git commit -m "DOI for ${{needs.create_package.outputs.version}} updated to ${{needs.publish_zenodo.outputs.doi}}"
-          git push origin HEAD:main
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "DOI updated to ${{needs.create_package.outputs.version}} (via github action)"
+          branch: master
+          file_pattern: CITATION.cff
+          commit_user_name: railtoolkit
+          commit_user_email: railtoolkit@ownx.net
 
   publish_twitter:
     needs: [create_package, publish_zenodo]
