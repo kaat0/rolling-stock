@@ -168,12 +168,12 @@ jobs:
           sed -i -- "${DATE_LINE}s|.*|date-released: ${DATE}|" CITATION.cff
           sed -i -- "${DOI_LINE}s|.*|    value: $DOI|" CITATION.cff
       
-      # 3. push the change back to master
+      # 3. push the change back to main
       - name: push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "DOI updated to ${{needs.create_package.outputs.version}} (via github action)"
-          branch: master
+          branch: main
           file_pattern: CITATION.cff
           commit_user_name: railtoolkit
           commit_user_email: railtoolkit@ownx.net

@@ -24,7 +24,7 @@ identifiers:
     value: 10.5281/zenodo.6467448
     description: 'Collection of archived snapshots of all versions of the library'
   - type: doi
-    value: 10.5281/zenodo.6468325
+    value: 10.5281/zenodo.6609895
     description: Current version
 repository-code: 'https://github.com/railtoolkit/rolling-stock-data'
 abstract: >-
@@ -34,5 +34,5 @@ keywords:
   - rolling stock
   - data
 license: CC-BY-4.0
-version: 2022.04
-date-released: 2022-04-18
+version: 2022.06
+date-released: 2022-06-03
