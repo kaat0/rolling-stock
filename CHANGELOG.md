@@ -13,6 +13,17 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * new VEHICLE
 
 
+## Version [2022.06]
+
+### Changed
+  
+  * updated to railtoolkit/schmema 2022.05
+
+### Fixed
+
+  * air resistance
+
+
 ## Version [2022.04]
 
 ### Added
@@ -27,5 +38,6 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * added traction-unit/DB_V90
 
 
-[Unreleased]: https://github.com/railtoolkit/rolling-stock-data/compare/2022.04...master
+[Unreleased]: https://github.com/railtoolkit/rolling-stock-data/compare/2022.06...main
+[2022.06]: https://github.com/railtoolkit/rolling-stock-data/releases/tag/2022.06
 [2022.04]: https://github.com/railtoolkit/rolling-stock-data/releases/tag/2022.04
